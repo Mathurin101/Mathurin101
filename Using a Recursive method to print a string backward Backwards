@@ -1,0 +1,38 @@
+import java.util.Scanner;
+public class RecursiveWordsBack {
+
+	public static void main(String[] args) {
+		
+
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Type a word to be in reverse: "); 
+		String Word = input.next(); //only takes the first word could take a phrase with nextLine()
+
+
+		System.out.print("Your word backwords: ");
+		RevrseRecur(Word); //call line 20 because of the arguements
+
+		}
+
+
+
+	public static String RevrseRecur(String s) {
+		return RevrseRecur(s, 0, s.length()-1); //calls the actual method which is in line 24
+	}
+
+	public static String RevrseRecur(String s, int low, int high) { 
+		//"low" is at 0 since the string's character start at 0
+		//"high" is at the max length -1 of the string to grab the last character of the string
+		
+		if(high <= low) { //checks if "high" is less than "low" which it is it will print the last character
+			System.out.print(s.charAt(low));
+		}else {
+			System.out.print(s.charAt(high));
+			return RevrseRecur(s,low,high-1); //recursively calling line 24 and minusing -1 to the "high" value until it reaches 0 or the low value
+		}
+		return s;
+	}
+	
+		
+}
