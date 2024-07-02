@@ -1,0 +1,46 @@
+import java.util.Scanner;
+public class RecursionVowels {
+
+	public static void main(String[] args) {
+		
+
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Type a word: ");
+		String Word = input.next();
+
+		if(VowelRecur(Word) == 1) { //prints how many vowels there are depending on the number for grammar reasons
+			System.out.print("There is " + VowelRecur(Word) +" vowel");
+		}else if(VowelRecur(Word) > 1){ 
+			System.out.print("There are " + VowelRecur(Word) +" vowels");
+		 }else {
+			 System.out.print("There are " + VowelRecur(Word) +" vowels");
+		 }
+
+	}
+
+
+
+	public static int VowelRecur(String s) {
+		int count = 0; //Counts how many vowels there are in the string
+		int low = 0; //To start at the first character 
+		
+		if(s.length() <= 0) { //Looks at the first character of the string
+			return 0;
+		}else {
+			switch(s.toLowerCase().charAt(low)) {//Checking each letter and incrementing by +1 when it is a vowel
+			
+			case 'a' :count+=1;break;
+			case 'e' :count+=1;break;
+			case 'i' :count+=1;break;
+			case 'o' :count+=1;break;
+			case 'u' :count+=1;break;
+			
+			}
+			return count + VowelRecur(s.substring(low+1, s.length())); //Will increment "low" by +1 to check each letter
+		}	
+	
+	}
+
+	
+}
