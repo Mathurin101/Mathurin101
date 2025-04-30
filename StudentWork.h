@@ -1,187 +1,246 @@
 #pragma once
 #include <string>
+
 /*
- * This is the File where all your work should go.
- *
- * Info about the Lab:
- *
- *		The goal of the first part of the lab
- *		is to learn how to write modular code
- *		by using the parameters given and performing
- *		a task with them. Then, returning the result of
- *		that task.
- *
- *		The goal of the second part of the lab
- *		is for you to create methods that you will
- *		then use in the related tests. This is to
- *		build your understanding of how methods are
- *		made, used, and the terminology surrounding
- *		them. Future Labs and Practicals will also
- *		expect you to create methods and use them
- *		as well.
- *
- * Additional reminders. In PG1:
- *	1. Methods are not permitted to use more than 1 return statement
- *	2. Please keep in mind the external use policy on FSO and on
- *     Discord to make sure you are not using concepts that are not
- *     allowed per policy.
- *	3. Usage of AI, LLM, and other policy violations can result in
- *     automatic 0s.
- */
+* This is the File where all your work should go.
+* This lab is NOT interactive - that means there should be no
+* calls to input or output for the user (no cout/cin)
+*
+* Info about the Lab:
+*
+*	The goal of the first part of the lab is for you to
+*	demonstrate your understanding of selection (condition)
+*	statements (if and switch). This means that each test
+*	in the first part of the lab will require you to use
+*	either a switch or an if statement for all solutions.
+*
+*	In the second part of the lab you will be taking these
+*	demonstrations and combine them with what we did in
+*	Lab 3 of method creation. You will create a method that
+*	will be required to have selection (condition) statement
+*	then call the method in the related Test.
+*
+* Additional reminders. In PG1:
+*	1. Methods are not permitted to use more than 1 return statement
+*	2. Please keep in mind the external use policy on FSO and on
+*      Discord to make sure you are not using concepts that are not
+*      allowed per policy.
+*	3. Usage of AI, LLM, and other policy violations can result in
+*      automatic 0s.
+*/
+
+
 class Submission
 {
 public:
+	//DO NOT CHANGE THIS ENUM
+	enum class MathOperator
+	{
+		Add = 0,
+		Subtract,
+		Multiply,
+		Divide,
+		Modulo
+	};
 
-	/* TODO: Test 1 - Years to Days
+
+	/* TODO: Test 1 - Proven or Denied
 	* ==================
-	* Convert the years into days and return the days.
+	* Use a condition statement to check the parameter and return
+	* "Proven" or "Denied" based on the comparison.
 	*
 	* Parameters:
-	* - years (int)
+	*- input (bool)
 	*
 	* Returns:
-	* - (int)
+	*- (std::string)
 	*
 	* Example input:
-	* - 5
+	* - true
 	*
 	* Expected output:
-	* - 1,825
+	* - "Proven"
 	*
 	* Tips:
-	*	- Break this down into a math problem on paper first.
-	*	- Think about how many days are in a year and go
-	*	  from there.
+	*	- The outputs are case sensitive so make sure you are assigning the string with the
+	*	  casing show in the instructions above.
 	*/
-
-	int Test1(int years)
+	std::string Test1(bool input)
 	{
-		//years * 365 will give me the amount of days in said years
-		int DaysInYear = years * 365;
-		return { DaysInYear };
+		std::string IsProvenDenied;
+		if (input == true) {
+			IsProvenDenied = "Proven";//if true
+		}
+		else {
+			IsProvenDenied = "Denied";//if false
+		}
+		return { IsProvenDenied };
 	}
 
-	/* TODO: Test 2 - Division
+
+	/* TODO: Test 2 - Weight conversion
 	* ==================
-	* Divide number1 by number2 and return the result.
+	* Use a condition statement to decide if you need to convert
+	* to kilograms or pounds. Return the converted value.
 	*
 	* Parameters:
-	* - number1 (double)
-	* - number2 (double)
+	*	- input (double)
+	*	- kiloToLb (bool)
 	*
 	* Returns:
-	* - (double)
+	*	- (double)
 	*
 	* Example input:
-	* - 5.00
-	* - 2.00
+	* - 2.75
+	* - true
 	*
 	* Expected output:
-	* - 2.50
+	* - 6.05
+	*
+	* Tips:
+	*	- The conversions are:
+	*			1 kg = 2.2 lb
+	*			1 lb = 0.45 kg
+	*	- Use either multiplication or division depending on how you want to write your math
+	*	  equation.
 	*/
-
-	double Test2(double number1, double number2)
+	double Test2(double input, bool kiloToLb)
 	{
-		double DiviTwoNumbers = number1 / number2;
-		return { DiviTwoNumbers };
+		double PoundKG = input;
+		if (kiloToLb == true) {
+			PoundKG *= 2.2;//lbs
+		}
+		else {
+			PoundKG *= 0.45;//kgs
+		}
+		return { PoundKG };
 	}
 
-	/* TODO: Test 3 - Remainder
+
+	/* TODO: Test 3 - Grade conversion
 	* ==================
-	* Calculate the remainder of number1 divided by number2
-	* and return the remainder.
+	* Use a condition statement to choose the letter grade
+	* based on the numeric grade. Return the letter grade.
 	*
 	* Parameters:
-	* - number1 (int)
-	* - number2 (int)
+	* - grade (int)
 	*
 	* Returns:
-	* - (int)
+	* - (char)
 	*
 	* Example input:
-	* - 7
-	* - 2
+	* - 80.5
 	*
-	* Expected output:
-	* - 1
+	* Example output:
+	* - 'B'
+	*
+	* Tips:
+	*	- Use if and if-else for this test
+	*	- Remember that you need to do each comparison
+	*	  separately. You cannot do 90 <= grade <= 100 as
+	*	  that will not work.
+	*	- If you need to combine statements for a range
+	*	  there are key operators (symbols) that allow for that.
+	*	- Use the following table to indicate which letter corresponds
+	*	  to the provided grades.
+	*			-----------------------------------
+	*			|   Grade Range			|  Letter	|
+	*			-----------------------------------
+	*			| >= 90 and <= 100		|   'A'		|
+	*			-----------------------------------
+	*			| >= 80 and < 90		|   'B'		|
+	*			-----------------------------------
+	*			| >= 73 and < 80		|   'C'		|
+	*			-----------------------------------
+	*			| >= 70 and < 73		|   'D'		|
+	*			-----------------------------------
+	*			| >= 0 and < 70			|   'F'		|
+	*			-----------------------------------
+	*			| < 0 or > 100			|   '?'		|
+	*			-----------------------------------
 	*/
-
-	int Test3(int number1, int number2)
+	char Test3(double grade)
 	{
-		int RemainderNumber = number1 % number2;
-		return { RemainderNumber };
+		char LetterGrade;
+		if (grade >= 90 && grade <= 100) {
+
+			LetterGrade = 'A';
+		}
+		else if (grade >= 80 && grade < 90) {
+
+			LetterGrade = 'B';
+		}
+		else if (grade >= 73 && grade < 80) {
+
+			LetterGrade = 'C';
+		}
+		else if (grade >= 70 && grade < 73) {
+
+			LetterGrade = 'D';
+		}
+		else if (grade >= 0 && grade < 70) {
+
+			LetterGrade = 'F';
+		}
+		else if (grade < 0 || grade > 100) {
+
+			LetterGrade = '?';
+		}
+		return { LetterGrade };
 	}
 
-	/* TODO: Test 4 - Square Root & Conversion
+
+
+	/* TODO: Test 4 - Leap year
 	* ==================
-	* Find the square root of the input value using the sqrt() method
-	* and return the result converted into a float using a cast.
+	* Use a condition statement to determine if the year
+	* is a leap year or not. Return the resulting value.
 	*
 	* Parameters:
-	* - input (double)
+	*	- year (int)
 	*
 	* Returns:
-	* - (float)
+	*	- (bool)
 	*
 	* Example input:
-	* - 36
+	* - 1979
 	*
-	* Expected output:
-	* - 6
+	* Example output:
+	* - false
 	*
-	* References:
-	*	- https://www.geeksforgeeks.org/sqrt-sqrtl-sqrtf-cpp/
-	*	- https://cplusplus.com/reference/cmath/sqrt/
-	*	- https://www.geeksforgeeks.org/type-conversion-in-c/
+	* Tips:
+	*	- A leap year is a year divisible by 4, but not divisible by 100.
+	*	- However, years divisible by 400 are also considered to be leap years.
+	*	- Write this one out out paper/whiteboard to solve it.
+	*		- Use the years 1200, 1700, and 2004 to test your paper logic.
 	*/
-
-	float Test4(double input)
+	bool Test4(int year)
 	{
-		float InputSquared = (float) sqrt(input);
-		return { InputSquared };
+		bool IsTrueOrNot = false;
+		
+		//if year can be divide 4 and year can not be divide by 100
+		if (year % 4 == 0 && year % 100 != 0) {
+			IsTrueOrNot = true;
+		}
+		else{
+			IsTrueOrNot;
+		}
+		return { IsTrueOrNot };
 	}
 
-	/* TODO: Test 5 - Raise to Power
-	* ==================
-	* Raise number to power using the pow() method
-	* and return the result.
-	*
-	* Parameters:
-	* - number (int)
-	* - power (int)
-	*
-	* Returns:
-	* - (double)
-	*
-	* Example input:
-	* - 5
-	* - 2
-	*
-	* Expected output:
-	* - 25
-	*
-	* References:
-	*	- https://cplusplus.com/reference/cmath/pow/
-	*	- https://www.geeksforgeeks.org/power-function-c-cpp/
-	*/
 
-	double Test5(int number, int power)
-	{
-		double RaisedBy =(double) pow(number, power);
-		return { RaisedBy };
-	}
-
-	/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!   IMPORTANT   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	/*
+	* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!   IMPORTANT   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	* ============================================================================================
 	* From this point on, you will need to create your own methods.
 	*
-	* See the above methods for an example.
+	* See the example below.
 	*
 	* Once the method has been created, you will then need to
 	* call the method in the related Test method. If you do not do
-	* so, you will not receive full credit for the lab.
+	* so you will not receive full credit for the lab.
 	*
-	* DO NOT alter any other part of the file as this could cause an
+	* DO NOT alter any other part of the file as this could cause
 	* unexpected output and would be considered academic dishonesty.
 	* ============================================================================================
 	* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!   IMPORTANT   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -190,275 +249,325 @@ public:
 	/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!   EXAMPLE   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	* ============================================================================================
 	*
-	* int Add(int x, int y)
+	* int Add (int x, int y)
 	* {
 	*		int result = x + y;
 	*		return result;
 	* }
 	*
-	* int TestMethod(int x, int y)
+	* int TestMethod (int x, int y)
 	* {
 	*		int result = Add(x, y);
 	*		return result;
 	* }
 	*
 	* ============================================================================================
-	* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!   EXAMPLE   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	*    * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!   EXAMPLE   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	*/
 
-	/* TODO: Test 6 - Concatenation - Part 1
+
+	/* TODO: Test 5 - Severity - Part 1
 	* ==================
-	* Create a method named "Concat" and return the value of all three
-	* parameters combined to form a question.
+	* Create a method called Severity that accepts an integer that represents
+	* the severity of an employee infraction.
+	* Return the associated required action as a string.
 	*
 	* Parameters:
-	* - (string)
-	* - (string)
-	* - (string)
+	* - (int)
 	*
 	* Returns:
 	* - (string)
 	*
+	*	Use the table below to know what level is associated with what action.
+	*   ------------------------------------------------------
+	*   | Infraction Severity		|     Required Action	|
+	*   ------------------------------------------------------
+	*   |      Level 1				|     Verbal Reprimand	|
+	*   ------------------------------------------------------
+	*   |      Level 2				|     Formal Reprimand	|
+	*   ------------------------------------------------------
+	*   |      Level 3				|     Suspension		|
+	*   ------------------------------------------------------
+	*   |      Level 4				|     Termination		|
+	*   ------------------------------------------------------
+	*
 	* Example input:
-	* - "Hey,"
-	* - "what's up"
-	* - "man"
+	* - 3
 	*
 	* Expected output:
-	* - "Hey, what's up man?"
+	* - "Suspension"
 	*
 	* Tips:
-	*	- You may use either concatenation or interpolation to complete this.
-	*	- Make sure that the returned string matches the spacing and punctuation
-	*	  of the expected result.
+	*	- Keep in mind, the returned required action is case sensitive and
+	*	  must be spelled correctly (exactly as the table above)
 	*/
-	std::string Concat(std::string FirstWord, std::string SecondWord, std::string ThirdWord) {
+	std::string Severity(int level) {
+		std::string LeveledAction;
 
-		std::string UserQuestion = FirstWord + " " + SecondWord + " " + ThirdWord + "?";
-		return UserQuestion;
+		switch (level) {
+		case 1: 
+			LeveledAction = "Verbal Reprimand";//level 1
+			break;
+
+		case 2: 
+			LeveledAction = "Formal Reprimand";//level 2
+			break;
+
+		case 3: 
+			LeveledAction = "Suspension";//level 3
+			break;
+
+		case 4: 
+			LeveledAction = "Termination";//level 4
+			break;
+		}
+
+		return LeveledAction;
 	}
-	
 
-	/* TODO: Test 6 - Concatenation - Part 2
+	/* TODO: Test 5 - Severity - Part 2
 	* ==================
-	* Call the method from Test 6 - Part 1.
-	* Pass in the parameters and return the string value.
+	* Call the method from Test 5 - Part 1.
+	* Pass in the parameters as arguments for the method called.
+	* Return the string value.
 	*
 	* Parameters:
-	* - input1 (string)
-	* - input2 (string)
-	* - input3 (string)
+	* - input (int)
 	*
 	* Returns:
 	* - (string)
+	*
 	*/
-
-	std::string Test6(std::string input1, std::string input2, std::string input3)
+	std::string Test5(int input)
 	{
-		std::string ConCatFromTest6 = Concat(input1, input2, input3);
-		return { ConCatFromTest6 };
+		std::string UserLevel = Severity(input);//assign level to UserLevel
+		
+		return { UserLevel };
 	}
 
-	/* TODO: Test 7 - Conversion - Part 1
+
+	/* TODO: Test 6 - Right Triangle - Part 1
 	* ==================
-	* Create a method named "Convert" and return the value of the
-	* double parameter converted to a float, using a cast.
+	* Create a method called isRightTriangle that accepts three integers which represent
+	* the three sides of a triangle.
+	* Determine if the triangle is a right triangle.
+	* Return true if the triangle is a right triangle, otherwise, return false.
 	*
 	* Parameters:
-	* - (double)
+	* - (int)
+	* - (int)
+	* - (int)
 	*
 	* Returns:
-	* - (float)
+	* - (bool)
 	*
 	* Example input:
-	* - 5.25
+	* - 6
+	* - 4
+	* - 7
 	*
 	* Expected output:
-	* - 5.25f
+	* - false
 	*
-	* References:
-	*	- https://www.geeksforgeeks.org/type-conversion-in-c/
+	* Tips:
+	*		- A triangle where the sum of the squares of the two shortest sides (a and b)
+	*		  is equal to the square of longest side (c) is a 'Right' triangle.
+	*		 - The third parameter (c) will always be the longest side given.
 	*/
-	float Convert(double DoubleInput) {
+	bool isRightTriangle(int a, int b, int c) {
+		bool isTrue = false;
 
-		float ConvToFloat = (float) DoubleInput;
-		return ConvToFloat;
+		//if a+b equal c then it is true
+		if ( a+b == c) {
+			isTrue = true;
+		}
+		else {
+			isTrue;//is false
+		}
+		return isTrue;
 	}
-	
 
-	/* TODO: Test 7 - Conversion - Part 2
+	/* TODO: Test 6 - Right Triangle - Part 2
 	* ==================
-	* Call the method from Test 7 - Part 1.
-	* Pass in the parameters and return the float value.
+	* Call the method created from Test 6 - Part 1.
+	* Pass in the parameters as arguments for the method called.
+	* Return the bool value.
 	*
 	* Parameters:
-	* - input (double)
+	* - a (int)
+	* - b (int)
+	* - c (int)
 	*
 	* Returns:
-	* - (float)
+	* - (bool)
 	*/
-
-	float Test7(double input)
+	bool Test6(int a, int b, int c)
 	{
-		float ValueInFloat = Convert(input);
-		return {ValueInFloat};
+		bool IsItTrue = isRightTriangle(a, b, c);//assign the boolean to "IsItTrue"
+		return { IsItTrue };
 	}
 
-	/* TODO: Test 8 - Average - Part 1
-	* ==================
-	* Create a method named "Average" and return the average of the
-	* three double parameters as a double.
+
+	/* TODO: Test 7 - Enum value return - Part 1
+	* =================================
+	* Create a method called EnumReturn that accepts an integer value and returns
+	* a MathOperator value.
+	* The MathOperator will be based on the value of the parameter provided
+	* using a switch statement.
+	* Return the MathOperator value.
 	*
 	* Parameters:
-	* - (double)
-	* - (double)
-	* - (double)
+	* - (int)
 	*
 	* Returns:
-	* - (double)
+	* - (MathOperator)
 	*
 	* Example input:
-	* - 25.0
-	* - 45.0
-	* - 65.0
+	* - 1
 	*
 	* Expected output:
-	* - 45.0
+	* - MathOperator::Add
+	*
+	* Tips:
+	*	- You do not need to worry about/handle any other possible
+	*	  input values (the only values passed to the method
+	*	  will be 0, 1, 2, 3, or 4)
+	*	- You will use the enum created at the top of the file for this method.
+	*	- Use the table below to know what numerical values is associated with which enum
+	*	  value.
+	*		-----------------------------------------------------------
+	*		| Numerical Value				|        Enum Value		  |
+	*		-----------------------------------------------------------
+	*		|				0				|   MathOperator::Add	  |
+	*		-----------------------------------------------------------
+	*		|				1				|   MathOperator::Subtract|
+	*		-----------------------------------------------------------
+	*		|				2				|   MathOperator::Multiply|
+	*		-----------------------------------------------------------
+	*		|				3				|   MathOperator::Divide  |
+	*		-----------------------------------------------------------
+	*		|				4				|   MathOperator::Modulo  |
+	*		-----------------------------------------------------------
 	*/
-	double Average(double FirstNumber, double SecondNumber, double ThirdNumber) {
-		double averageNumber = (FirstNumber + SecondNumber + ThirdNumber) / 3;
-		return averageNumber;
-	}
-	
+	MathOperator EnumReturn(int UserValue) {
+		MathOperator MathOP;
 
-	/* TODO: Test 8 - Average - Part 2
-	* ==================
+		switch (UserValue) {
+
+		case 0: 
+			MathOP = MathOperator::Add;//value: 0
+			break;
+
+		case 1: 
+			MathOP = MathOperator::Subtract;//value: 1
+			break;
+
+		case 2: 
+			MathOP = MathOperator::Multiply;//value: 2
+			break;
+
+		case 3: 
+			MathOP = MathOperator::Divide;//value: 3
+			break;
+
+		case 4: 
+			MathOP =MathOperator::Modulo;//value: 4
+			break;
+
+		}
+
+		return MathOP;
+	}
+
+	/* TODO: Test 7 - Enum value return - Part 2
+	* =================================
+	* Call the  method from Test 7 - Part 1.
+	* Pass in the parameters as arguments for the method called.
+	* Return the MathOperator value.
+	*
+	* Parameters:
+	*	- input (int)
+	*
+	* Returns:
+	*	- (MathOperator)
+	*/
+	MathOperator Test7(int input)
+	{
+		MathOperator UserInput = EnumReturn(input);
+		return { UserInput };
+	}
+
+
+	/* TODO: Test 8 - Preform Operation - Part 1
+	* =====================
+	* Create a method called Operation that accepts two integers and a MathOperator object.
+	* Use the MathOperator parameter to decide what operation to perform on the two integer
+	* parameter values provided.
+	* Return the result of performing the chosen operation on the two integer values.
+	*
+	* Parameters:
+	* - (int)
+	* - (int)
+	* - (MathOperator)
+	*
+	* Returns:
+	* - (int)
+	*
+	* Example input:
+	* - 5
+	* - 2
+	* - MathOperator::Multiply
+	*
+	* Expected output:
+	* - 10
+	*/
+	int Operation(int FirstNumber, int SecondNumber, MathOperator Operate) {
+		int Answer = 0;
+
+		switch (Operate) {
+
+		case MathOperator::Add: //enum value: 0
+			Answer = FirstNumber + SecondNumber;
+			break;
+
+		case MathOperator::Subtract: //enum value: 1
+			Answer = FirstNumber - SecondNumber;
+			break;
+
+		case MathOperator::Multiply: //enum value: 2
+			Answer = FirstNumber * SecondNumber;
+			break;
+
+		case MathOperator::Divide: //enum value: 3
+			Answer = FirstNumber / SecondNumber;
+			break;
+
+		case MathOperator::Modulo: //enum value: 4
+			Answer = FirstNumber % SecondNumber;//Assign the remainder to Answer
+			break;
+		}
+
+		return Answer;
+	}
+
+	/* TODO: Test 8 - Perform Operation - Part 2
+	* =====================
 	* Call the method from Test 8 - Part 1.
-	* Pass in the parameters and return the double value.
+	* Pass in the parameters as arguments for the method called.
+	* Return the int value.
 	*
 	* Parameters:
-	* - number1 (double)
-	* - number2 (double)
-	* - number3 (double)
+	* - number1 (int)
+	* - number2 (int)
+	* - operation (MathOperator)
 	*
 	* Returns:
-	* - (float)
+	* - (int)
 	*/
-
-	double Test8(double number1, double number2, double number3)
+	int Test8(int number1, int number2, MathOperator operation)
 	{
-		float TheFloatAverage = (float) Average(number1, number2, number3);
-		return { TheFloatAverage };
-	}
-
-	/* TODO: Test 9 - Area - Part 1
-	* ==================
-	* Create a method named "Area"
-	* Determine the area of a triangle using the given values and
-	* return the area as a double.
-	*
-	* Parameters:
-	* - (double)
-	* - (double)
-	*
-	* Returns:
-	* - (double)
-	*
-	* Example input:
-	* - 10, 7
-	*
-	* Expected output:
-	* - 35
-	*
-	* Tips:
-	*	- The formula for the area of a triangle is 1/2 * base * height.
-	*	- This solution should not require any type of conversion.
-	*	- 1/2 is two ints being divided and will not hold a decimal value.
-	*	Think about what you need to change about that statement so you are
-	*	using a decimal value.
-	*
-	* References:
-	*	- https://www.cuemath.com/measurement/area-of-triangle/
-	*/
-	double Area(double number1, double number2) {
-		double TheArea = (1.0 / 2.0) * (number1 * number2);
-		return TheArea;
-	}
-	
-
-	/* TODO: Test 9 - Area - Part 2
-	* ==================
-	* Call the method from Test 9 - Part 1.
-	* Pass in the parameters and return the double value.
-	*
-	* Parameters:
-	* - number1 (double)
-	* - number2 (double)
-	*
-	* Returns:
-	* - (double)
-	*/
-
-	double Test9(double number1, double number2)
-	{
-		double FormulaOfTri = Area(number1, number2);
-		return { FormulaOfTri };
-	}
-
-	/* TODO: Test 10 - Division Overload - Part 1
-	* ==================
-	* Create an overload for Test2 that takes in 3 double parameters instead of 2
-	* and return number1 divided by number2 divided by number3.
-	*
-	* Parameters:
-	* - number1 (double)
-	* - number2 (double)
-	* - number3 (double)
-	*
-	* Returns:
-	* - (double)
-	*
-	* Example input:
-	* - 5.0
-	* - 2.0
-	* - 6.0
-	*
-	* Expected output:
-	* - 4.167
-	*
-	* Tips:
-	*	- Remember that a method overload is a different version of a method
-	*   that has the same identifier but accepts different parameters,
-	*   has a different return type, or both.
-	*
-	* References:
-	*	- https://www.geeksforgeeks.org/function-overloading-c/
-	*	- https://learn.microsoft.com/en-us/cpp/cpp/function-overloading?view=msvc-170
-	*/
-	double Test2(double number1, double number2, double number3)
-	{
-		double DiviThreeNumbers = number1 / number2 / number3;
-		return { DiviThreeNumbers };
-	}
-	
-
-	/* TODO: Test 10 - Division Overload - Part 2
-	* ==================
-	* Call the method from Test 10 - Part 1.
-	* Pass in the parameters and return the double value.
-	*
-	* Parameters:
-	* - number1 (double)
-	* - number2 (double)
-	* - number3 (double)
-	*
-	* Returns:
-	* - (double)
-	*/
-
-	double Test10(double number1, double number2, double number3)
-	{
-		double ThreeNumbersDivi = Test2(number1, number2, number3);
-		return { ThreeNumbersDivi };
+		//assigns the answer from the switch statement to "TheUserAnswer"
+		int TheUserAnswer = Operation(number1, number2, operation);
+		return { TheUserAnswer };
 	}
 };
